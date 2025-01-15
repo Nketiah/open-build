@@ -17,3 +17,30 @@ namespace BasicSyntax
         }
     }
 }
+
+/****************************    Http Request    **********************************/
+static readonly HttpClient httprequest = new HttpClient();
+public static async Task DownloadStrAndWrite()
+{
+    try
+    {
+        string responseBody = await httprequest.GetStringAsync("https://msdn.microsoft.com");
+        Console.WriteLine(responseBody);
+    }
+    catch(HttpRequestException e)
+    {
+        Console.WriteLine("\nException Caught!");
+        Console.WriteLine("Message :{0} ", e.Message);
+    }
+   
+}
+
+
+/****************************    Writing to text file    **************************/
+public static void WriteTotext(string text)
+{
+    File.WriteAllText(@"C:\Users\nketi\Documents\Dotnetss\changee.txt", text);
+    Console.WriteLine("Done writing ");
+}
+
+
